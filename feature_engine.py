@@ -27,13 +27,20 @@ class FeatureEngine:
             features[f'ema_{length}'] = ta.ema(df['close'], length=length).astype(np.float32)
             features[f'sma_{length}'] = ta.sma(df['close'], length=length).astype(np.float32)
         
-        ich_df, _ = ta.ichimoku(df['high'], df['low'], df['close'])
-        if ich_df is not None:
-            features['ich_conversion'] = ich_df.get('ITS_9_26_52', np.nan).astype(np.float32)
-            features['ich_base'] = ich_df.get('IKS_9_26_52', np.nan).astype(np.float32)
-            features['ich_span_a'] = ich_df.get('ISA_9', np.nan).astype(np.float32)
-            features['ich_span_b'] = ich_df.get('ISB_26', np.nan).astype(np.float32)
-        features['ich_lagging'] = df['close'].shift(26).astype(np.float32)
+                ich_df, _ = ta.ichimoku(df['high'], df['low'], df['close'])
+        if ich_df is not None and 'ITS_9_26_52' in ich_df.columns:
+            features['ich_conversion'] = ich_df['ITS_9_26_52'].astype(np.float32).values
+            features['ich_base'] = ich_df['IKS_9_26_52'].astype(np.float32).values
+            features['ich_span_a'] = ich_df['ISA_9'].astype(np.float32).values
+            features['ich_span_b'] = ich_df['ISB_26'].astype(np.float32).values
+        else:
+            # Agar indicator fail ho jaye ya column na mile, toh pure array assign karein
+            empty_array = np.full(len(df), np.nan, dtype=np.float32)
+            features['ich_conversion'] = empty_array
+            features['ich_base'] = empty_array
+            features['ich_span_a'] = empty_array
+            features['ich_span_b'] = empty_array
+
         
         adx_df = ta.adx(df['high'], df['low'], df['close'])
         features['adx'] = adx_df['ADX_14'].astype(np.float32)
