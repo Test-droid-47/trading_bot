@@ -1,0 +1,93 @@
+{
+    "trading_mode": "spot",
+    "leverage": 10,
+    "exchange_mode": "paper",
+    
+    "BINANCE_API_KEY": "",
+    "BINANCE_API_SECRET": "",
+    "BINANCE_TESTNET_API_KEY": "",
+    "BINANCE_TESTNET_API_SECRET": "",
+    
+    "symbol": "BTC/USDT",
+    "timeframe": "1h",
+    "timeframes_mtf": ["1h", "4h", "1d"],
+    
+    "window": 120,
+    "candles_per_call": 1000,
+    "limit": 1000,
+    "historical_years": 3,
+    "fear_greed_limit": 1100,
+    "fast_fetch_bars": 200,
+    
+    "lstm_units_1": 128,
+    "lstm_units_2": 64,
+    "attention_heads": 8,
+    "attention_key_dim": 64,
+    "dropout_rate": 0.2,
+    "epochs": 100,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "train_split": 0.8,
+    
+    "optuna_trials": 30,
+    "optuna_epochs": 20,
+    "shap_top_k": 150,
+    "wfo_n_splits": 5,
+    "wfo_gap": 24,
+    
+    "rl_gamma": 0.99,
+    "rl_clip_epsilon": 0.2,
+    "rl_ppo_epochs": 10,
+    "rl_entropy_coeff": 0.01,
+    "rl_n_episodes": 200,
+    "drawdown_penalty": 2.0,
+    
+    "trade_amount_pct": 0.10,
+    "trade_amount_usdt": null,
+    "min_trade_amount_usdt": 1,
+    "max_trade_amount_usdt": 100,
+    
+    "stop_loss_pct": 0.002,
+    "take_profit_pct": 0.003,
+    "trailing_activation_pct": 0.004,
+    "trailing_distance_pct": 0.001,
+    
+    "fee_rate": 0.001,
+    "slippage": 0.0005,
+    "initial_capital": 10000.0,
+    "kelly_cap": 0.25,
+    "max_risk_per_trade": 0.02,
+    "threshold_atr_multiplier": 0.5,
+    
+    "gmm_components": 4,
+    "regime_lookback": 100,
+    "regime_map_path": "regime_label_map.json",
+    
+    "ensemble_weights": {"lstm": 0.5, "xgb": 0.25, "lgb": 0.25},
+    "conformal_alpha": 0.1,
+    "mc_simulations": 1000,
+    "mc_confidence": 0.95,
+    
+    "cryptopanic_token": "",
+    "fg_api": "https://api.alternative.me/fng/",
+    "cryptopanic_api": "https://cryptopanic.com/api/v1/posts/",
+    
+    "model_save_path": "models/lstm_model.keras",
+    "scaler_save_path": "models/scaler.pkl",
+    "checkpoint_path": "models/checkpoint.keras",
+    "results_path": "results/wfo_results.json",
+    "features_path": "models/selected_features.json",
+    
+    "ob_lookback": 20,
+    "fvg_min_gap_pct": 0.001,
+    
+    "live_paper_mode": true,
+    "live_loop_interval": 60,
+    "live_max_positions": 1,
+    "max_consecutive_losses": 3,
+    
+    "use_csv_fallback": false,
+    "csv_file_path": "manual_data.csv",
+    
+    "supported_timeframes": ["1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h", "6h", "8h", "12h", "1d", "3d", "1w", "1M"]
+}
